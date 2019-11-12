@@ -1,6 +1,19 @@
 <h1>My Tasks</h1>
 <% @tasks.each do |task| %>
   <h2>Title: <%= task.title %></h2>
-  <p>Completed: <%= task.completed %></p>
-  <%= link_to "details", task_path(task) %>
+  <%= form_for(task) do |f| %>
+    <%= f.label :completed %>
+    <%= f.check_box :completed %>
+
+    <%= f.submit %>
+  <% end %>
+
+  <%= link_to "More details", task_path(task) %>
+  <%= link_to "Edit this task", edit_path(task) %>
+  <%= link_to "Delete this task", delete_path(task), method: :delete %>
 <% end %>
+<br>
+
+<h3>Create new task</h3>
+<%= link_to "Create new task", new_path %>
+
